@@ -14,5 +14,4 @@ class StationTableViewCell: UITableViewCell {
     @IBOutlet weak var bike_racksLabel: UILabel!
     @IBOutlet weak var labelLabel: UILabel!
     
-    
 }

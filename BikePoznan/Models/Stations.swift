@@ -16,8 +16,16 @@ struct StationDetails: Decodable{
     let label, bikes, bike_racks: String
 }
 
-struct Stations: Decodable{
+struct StationGeometry: Decodable{
+    
+    let coordinates: Array<Double>
+}
 
+
+
+struct Stations: Decodable{
+    
+    let geometry: StationGeometry
     let properties: StationDetails
   
 }

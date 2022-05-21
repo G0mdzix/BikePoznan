@@ -52,3 +52,9 @@ extension BikeStationViewModel{
             return self.Station.properties.bike_racks
         }
     }
+
+extension BikeStationViewModel{
+        var coordinates: Array<Double>{
+            return self.Station.geometry.coordinates
+        }
+    }

@@ -20,6 +20,7 @@
 		B8D2454A283822E300773E8E /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D24549283822E300773E8E /* Stations.swift */; };
 		B8D2455128384F1700773E8E /* BikeStationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D2455028384F1700773E8E /* BikeStationViewModel.swift */; };
 		B8D24556283861B500773E8E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D24555283861B500773E8E /* StationTableViewCell.swift */; };
+		B8D2455828390B6F00773E8E /* BikeStationMapViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D2455728390B6F00773E8E /* BikeStationMapViewControler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B8D24549283822E300773E8E /* Stations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 		B8D2455028384F1700773E8E /* BikeStationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationViewModel.swift; sourceTree = "<group>"; };
 		B8D24555283861B500773E8E /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
+		B8D2455728390B6F00773E8E /* BikeStationMapViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationMapViewControler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D2454528380D8400773E8E /* BikeStationsTableViewController.swift */,
+				B8D2455728390B6F00773E8E /* BikeStationMapViewControler.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				B8D24556283861B500773E8E /* StationTableViewCell.swift in Sources */,
 				B8D245482838133300773E8E /* Webservice.swift in Sources */,
 				B8D2455128384F1700773E8E /* BikeStationViewModel.swift in Sources */,
+				B8D2455828390B6F00773E8E /* BikeStationMapViewControler.swift in Sources */,
 				B8D2454628380D8400773E8E /* BikeStationsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

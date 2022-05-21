@@ -8,9 +8,13 @@
 import Foundation
 import UIKit
 
+
+
 class BikeStationsTableViewController: UITableViewController{
     
     private var stationListVM: BikeStationListViewModel!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +50,27 @@ class BikeStationsTableViewController: UITableViewController{
             fatalError("Cell not found")
             
         }
-     let stationVM =   self.stationListVM.stationAtIndex(indexPath.row)
+        
+        let stationVM =   self.stationListVM.stationAtIndex(indexPath.row)
         cell.bike_racksLabel.text = stationVM.bike_racks
         cell.bikesLabel.text = stationVM.bikes
         cell.labelLabel.text = stationVM.label
         return cell
+        
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        let stationVM =   self.stationListVM.stationAtIndex(indexPath.row)
+       
+       
+        
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "MapViewID") as? BikeStationsMapieViewController{
+            vc.free_bikes = stationVM.bikes
+            vc.Coor = stationVM.coordinates
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+    }
+
 }

@@ -12,6 +12,8 @@ import CoreLocation
 
 class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelegate {
 
+    
+    @IBOutlet weak var Distance: UILabel!
     @IBOutlet weak var mapKit: MKMapView!
     var Coor: Array<Double> = []
     var free_bikes: String = ""
@@ -37,12 +39,12 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
         
         
         let region = MKCoordinateRegion(center: userLocation, span: span)
-    //   mapKit.setRegion(region, animated: true) //#1
+    //   mapKit.setRegion(region, animated: true) //#1 wyswietanie uzytkownika
         self.mapKit.showsUserLocation = true
         
-        let cord1 = Coor[0]
-        let cord2 = Coor[1]
-        let coordinate = CLLocationCoordinate2D(latitude: cord2, longitude: cord1)
+        let cordinate1 = Coor[0]
+        let cordinate2 = Coor[1]
+        let coordinate = CLLocationCoordinate2D(latitude: cordinate2, longitude: cordinate1)
         
         let pin = MKPointAnnotation()
         pin.coordinate = coordinate
@@ -50,14 +52,15 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
         pin.title = free_bikes
         
         let regionPin = MKCoordinateRegion(center: coordinate, span: span)
-        mapKit.setRegion(regionPin, animated: true) //#2
+        mapKit.setRegion(regionPin, animated: true) //#2 wyswietlanie stacji rowerowej
         
   
        let UserLocDistance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let StationLocDistance = CLLocation(latitude: cord2, longitude: cord1)
+        let StationLocDistance = CLLocation(latitude: cordinate2, longitude: cordinate1)
         let distance = UserLocDistance.distance(from: StationLocDistance)
-        print(distance,"Znajdz mnie @@@@@@@@@@@@@@@@@@@@@@")
-         
+
+        let convDistance = String(distance)
+        Distance.text = convDistance+" meters"
     }
 
    

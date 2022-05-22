@@ -34,12 +34,12 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
         print("locations = \(locValue.latitude) \(locValue.longitude)")
       
         let location = locations[0]
-        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let userLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         
         
         let region = MKCoordinateRegion(center: userLocation, span: span)
-    //   mapKit.setRegion(region, animated: true) //#1 wyswietanie uzytkownika
+       mapKit.setRegion(region, animated: true) //#1 wyswietanie uzytkownika
         self.mapKit.showsUserLocation = true
         
         let cordinate1 = Coor[0]
@@ -58,8 +58,9 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
        let UserLocDistance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let StationLocDistance = CLLocation(latitude: cordinate2, longitude: cordinate1)
         let distance = UserLocDistance.distance(from: StationLocDistance)
-
-        let convDistance = String(distance)
+        let distanceToInt = Int(distance)
+        let convDistance = String(distanceToInt)
+        
         Distance.text = convDistance+" meters"
     }
 

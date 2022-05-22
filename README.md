@@ -13,3 +13,5 @@ Każda prezentowana stacja rowerowa powinna zawierać takie informacje jak:
 - odległość użytkownika od stacji
 
 Kliknięcie w stacje otwiera widok szczegółów z pozycją stacji na mapie.
+
+## Aplikacja zawiera wszystkie powyzsze podpunkty

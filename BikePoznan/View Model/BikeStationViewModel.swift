@@ -7,6 +7,9 @@
 
 import Foundation
 
+
+
+
 struct BikeStationListViewModel{
     let Station: [Stations]
 }
@@ -29,6 +32,7 @@ struct BikeStationViewModel {
     private let Station: Stations
     
 }
+
 
 extension BikeStationViewModel{
     init(_ station: Stations){
@@ -56,5 +60,9 @@ extension BikeStationViewModel{
 extension BikeStationViewModel{
         var coordinates: Array<Double>{
             return self.Station.geometry.coordinates
+            
         }
     }
+
+
+

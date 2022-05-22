@@ -13,10 +13,18 @@ import CoreLocation
 class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelegate {
 
     
-    @IBOutlet weak var Distance: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var labelLabel: UILabel!
+    @IBOutlet weak var bikesLabel: UILabel!
+    @IBOutlet weak var bikeRacksLabel: UILabel!
     @IBOutlet weak var mapKit: MKMapView!
-    var Coor: Array<Double> = []
-    var free_bikes: String = ""
+    
+    var racks: String = ""
+    var bikes: String = ""
+    var streetLabel: String = ""
+    
+    var coordinates: Array<Double> = []
+    var freeBikes: String = ""
     let mangager = CLLocationManager()
 
     override func viewDidLoad() {
@@ -30,38 +38,39 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
  
      
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-      
-        let location = locations[0]
+        let location = locations[0] //!
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let userLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         
         
         let region = MKCoordinateRegion(center: userLocation, span: span)
-       mapKit.setRegion(region, animated: true) //#1 wyswietanie uzytkownika
+       mapKit.setRegion(region, animated: true)
         self.mapKit.showsUserLocation = true
         
-        let cordinate1 = Coor[0]
-        let cordinate2 = Coor[1]
-        let coordinate = CLLocationCoordinate2D(latitude: cordinate2, longitude: cordinate1)
+        let longitudePin = coordinates[0]
+        let latidudePin = coordinates[1]
+        let coordinate = CLLocationCoordinate2D(latitude: latidudePin, longitude: longitudePin)
         
-        let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
-        mapKit.addAnnotation(pin)
-        pin.title = free_bikes
+        let stationPin = MKPointAnnotation()
+        stationPin.coordinate = coordinate
+        stationPin.title = freeBikes
+        mapKit.addAnnotation(stationPin)
         
         let regionPin = MKCoordinateRegion(center: coordinate, span: span)
-        mapKit.setRegion(regionPin, animated: true) //#2 wyswietlanie stacji rowerowej
+        mapKit.setRegion(regionPin, animated: true)
         
   
-       let UserLocDistance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let StationLocDistance = CLLocation(latitude: cordinate2, longitude: cordinate1)
-        let distance = UserLocDistance.distance(from: StationLocDistance)
-        let distanceToInt = Int(distance)
-        let convDistance = String(distanceToInt)
+       let userLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let stationLoc = CLLocation(latitude: latidudePin, longitude: longitudePin)
+        let distance = userLoc.distance(from: stationLoc)
+        let convertedDistanceToString = String(Int(distance))
         
-        Distance.text = convDistance+" meters"
+        distanceLabel.text = convertedDistanceToString+" meters"
+        labelLabel.text = streetLabel
+        bikesLabel.text = bikes
+        bikeRacksLabel.text = racks
+   
+      
     }
 
    

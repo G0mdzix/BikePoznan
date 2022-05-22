@@ -11,7 +11,7 @@
         <!--BikeStationsPoznan-->
         <scene sceneID="LYx-4u-gpP">
             <objects>
-                <tableViewController id="Ofq-3a-UhA" customClass="BikeStationsTableViewController" customModule="BikePoznan" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TableStationID" id="Ofq-3a-UhA" customClass="BikeStationsTableViewController" customModule="BikePoznan" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="IZK-pu-52S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,12 +76,12 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="221" id="6sK-Nf-dSx"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfR-zp-QoY">
-                                            <rect key="frame" x="20" y="49" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK1-YG-tTu">
+                                            <rect key="frame" x="20" y="50" width="105" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -104,6 +104,7 @@
                                 <connections>
                                     <outlet property="bike_racksLabel" destination="EAT-zc-4qT" id="LgA-s4-CC7"/>
                                     <outlet property="bikesLabel" destination="eyB-2y-z10" id="MWJ-WP-GjI"/>
+                                    <outlet property="distanceLabel" destination="OK1-YG-tTu" id="tlc-NT-SCc"/>
                                     <outlet property="labelLabel" destination="dM0-yE-uBJ" id="fMx-wq-jtX"/>
                                 </connections>
                             </tableViewCell>
@@ -216,7 +217,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="XZ6-Bw-yEB"/>
                     <connections>
-                        <outlet property="Distance" destination="e2k-uN-qHH" id="ZLD-dc-yIE"/>
+                        <outlet property="bikeRacksLabel" destination="Pcf-o2-ksW" id="hbm-3B-Xla"/>
+                        <outlet property="bikesLabel" destination="XrU-q0-vJv" id="OKY-C2-i0v"/>
+                        <outlet property="distanceLabel" destination="e2k-uN-qHH" id="bZ1-xx-tg7"/>
+                        <outlet property="labelLabel" destination="YlA-rf-cNM" id="kT3-OE-xIE"/>
                         <outlet property="mapKit" destination="Xmq-3D-cWR" id="zsU-Tg-wpH"/>
                     </connections>
                 </viewController>

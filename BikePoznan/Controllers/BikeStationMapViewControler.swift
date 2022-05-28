@@ -10,71 +10,62 @@ import UIKit
 import MapKit
 import CoreLocation
 
+
 class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelegate {
 
-    
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var labelLabel: UILabel!
     @IBOutlet weak var bikesLabel: UILabel!
     @IBOutlet weak var bikeRacksLabel: UILabel!
     @IBOutlet weak var mapKit: MKMapView!
     
-    var racks: String = ""
-    var bikes: String = ""
-    var streetLabel: String = ""
+    var dataFromStationTableViewController: BikeStationViewModel!
+    var stationMapVM = BikeStationMapViewModel()
     
-    var coordinates: Array<Double> = []
-    var freeBikes: String = ""
-    let mangager = CLLocationManager()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        mangager.desiredAccuracy = kCLLocationAccuracyBest
-        mangager.delegate = self
-        mangager.requestWhenInUseAuthorization()
-        mangager.startUpdatingLocation()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+         super.viewDidAppear(animated)
+        stationMapVM.setupManager()
+        stationMapVM.mangager.delegate = self
+            setup()
+            setUpPinLocation()
+     }
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
- 
+        let location = locations[0]
+        let userLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        updateDistance(userLocation: userLocation)
      
-        let location = locations[0] //!
-        let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-        let userLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        
-        
-        let region = MKCoordinateRegion(center: userLocation, span: span)
-       mapKit.setRegion(region, animated: true)
-        self.mapKit.showsUserLocation = true
-        
-        let longitudePin = coordinates[0]
-        let latidudePin = coordinates[1]
-        let coordinate = CLLocationCoordinate2D(latitude: latidudePin, longitude: longitudePin)
-        
-        let stationPin = MKPointAnnotation()
-        stationPin.coordinate = coordinate
-        stationPin.title = freeBikes
-        mapKit.addAnnotation(stationPin)
-        
-        let regionPin = MKCoordinateRegion(center: coordinate, span: span)
-        mapKit.setRegion(regionPin, animated: true)
-        
-  
-       let userLoc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let stationLoc = CLLocation(latitude: latidudePin, longitude: longitudePin)
-        let distance = userLoc.distance(from: stationLoc)
-        let convertedDistanceToString = String(Int(distance))
-        
-        distanceLabel.text = convertedDistanceToString+" meters"
-        labelLabel.text = streetLabel
-        bikesLabel.text = bikes
-        bikeRacksLabel.text = racks
-   
-      
     }
+  
+    func setUpPinLocation(){
+        let stationPin = MKPointAnnotation()
+        self.mapKit.showsUserLocation = true
+        stationPin.coordinate =  CLLocationCoordinate2D(latitude: dataFromStationTableViewController.coordinates[1], longitude: dataFromStationTableViewController.coordinates[0])
+        stationPin.title = dataFromStationTableViewController.bikes
+        mapKit.addAnnotation(stationPin)
+        let staionPinRegion = MKCoordinateRegion(center: stationPin.coordinate, span: stationMapVM.span)
+        mapKit.setRegion(staionPinRegion, animated: true)
+        
+    }
+    
+    func setup(){
+        labelLabel.text = dataFromStationTableViewController.label
+        bikesLabel.text = dataFromStationTableViewController.bikes
+        bikeRacksLabel.text = dataFromStationTableViewController.bike_racks
+    
+    }
+    
+    func updateDistance(userLocation: CLLocation) {
+        distanceLabel.text = dataFromStationTableViewController.getDistance(userLocation: userLocation)
+    }
+    
+    
 
-   
     
 }
-
 

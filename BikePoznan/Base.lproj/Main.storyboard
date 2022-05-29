@@ -74,15 +74,17 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dM0-yE-uBJ">
                                             <rect key="frame" x="20" y="20.5" width="221" height="20.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="221" id="6sK-Nf-dSx"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="221" id="6sK-Nf-dSx"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK1-YG-tTu">
-                                            <rect key="frame" x="20" y="50" width="105" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK1-YG-tTu">
+                                            <rect key="frame" x="20" y="50" width="105" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="105" id="AMs-wb-tAv"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -97,8 +99,12 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="SA1-SW-HXm" secondAttribute="bottom" constant="-6" id="Sdo-mk-KgY"/>
                                         <constraint firstItem="SA1-SW-HXm" firstAttribute="leading" secondItem="7gM-Yi-aH3" secondAttribute="trailing" constant="40.5" id="T0Z-9f-f0M"/>
                                         <constraint firstItem="7gM-Yi-aH3" firstAttribute="top" secondItem="dM0-yE-uBJ" secondAttribute="bottom" constant="9" id="WJ7-fG-qb8"/>
+                                        <constraint firstItem="OK1-YG-tTu" firstAttribute="top" secondItem="7gM-Yi-aH3" secondAttribute="top" id="deh-LI-Mav"/>
+                                        <constraint firstItem="SA1-SW-HXm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OK1-YG-tTu" secondAttribute="trailing" constant="8" symbolic="YES" id="jK1-du-XIZ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="SA1-SW-HXm" secondAttribute="trailing" constant="7.5" id="nyi-fB-hZR"/>
                                         <constraint firstItem="SA1-SW-HXm" firstAttribute="leading" secondItem="7gM-Yi-aH3" secondAttribute="trailing" constant="40.5" id="pX7-fg-OE9"/>
+                                        <constraint firstItem="OK1-YG-tTu" firstAttribute="leading" secondItem="dM0-yE-uBJ" secondAttribute="leading" id="riD-wP-aQs"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dM0-yE-uBJ" secondAttribute="trailing" constant="20" symbolic="YES" id="wmo-yY-GXu"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

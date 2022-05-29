@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import CoreLocation
+import UIKit
+import MapKit
 
-
-
-
-struct BikeStationListViewModel{
+struct BikeStationListViewModel{ // bikestationlist
     let Station: [Stations]
 }
 
@@ -28,8 +28,10 @@ extension BikeStationListViewModel{
     }
 }
 
+
+
 struct BikeStationViewModel {
-    private let Station: Stations
+     let Station: Stations
     
 }
 
@@ -63,6 +65,18 @@ extension BikeStationViewModel{
             
         }
     }
+
+extension BikeStationViewModel{
+    
+    func getDistance(userLocation: CLLocation) -> String
+    {
+        let stationLocation = CLLocation(latitude: coordinates[1], longitude: coordinates[0])
+        let distance = userLocation.distance(from: stationLocation)
+        let convertedDistanceToString = String(Int(distance))
+        return convertedDistanceToString+" meters"
+    }
+}
+
 
 
 

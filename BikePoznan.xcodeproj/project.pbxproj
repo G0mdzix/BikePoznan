@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B806DCA0284030110056B1E5 /* BikeStationMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B806DC9F284030110056B1E5 /* BikeStationMapViewModel.swift */; };
 		B8D245112838091700773E8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D245102838091700773E8E /* AppDelegate.swift */; };
 		B8D245132838091700773E8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D245122838091700773E8E /* SceneDelegate.swift */; };
 		B8D245182838091700773E8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8D245162838091700773E8E /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B806DC9F284030110056B1E5 /* BikeStationMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationMapViewModel.swift; sourceTree = "<group>"; };
 		B8D2450D2838091700773E8E /* BikePoznan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikePoznan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D245102838091700773E8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8D245122838091700773E8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D2455028384F1700773E8E /* BikeStationViewModel.swift */,
+				B806DC9F284030110056B1E5 /* BikeStationMapViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				B8D245132838091700773E8E /* SceneDelegate.swift in Sources */,
 				B8D24556283861B500773E8E /* StationTableViewCell.swift in Sources */,
 				B8D245482838133300773E8E /* Webservice.swift in Sources */,
+				B806DCA0284030110056B1E5 /* BikeStationMapViewModel.swift in Sources */,
 				B8D2455128384F1700773E8E /* BikeStationViewModel.swift in Sources */,
 				B8D2455828390B6F00773E8E /* BikeStationMapViewControler.swift in Sources */,
 				B8D2454628380D8400773E8E /* BikeStationsTableViewController.swift in Sources */,

@@ -1,0 +1,6 @@
+framework module Pods_BikePoznan {
+  umbrella header "Pods-BikePoznan-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct StationsList: Decodable{
+struct StationsList: Codable { 
     let features: [Stations]
 }
 
-struct StationDetails: Decodable{
+struct StationDetails: Codable{
     let label, bikes, bike_racks: String
 }
 
-struct StationGeometry: Decodable{
+struct StationGeometry: Codable{
     let coordinates: Array<Double>
 }
 
 
 
-struct Stations: Decodable{
+struct Stations: Codable{
     let geometry: StationGeometry
     let properties: StationDetails
 }

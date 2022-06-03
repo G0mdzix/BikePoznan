@@ -11,28 +11,35 @@ import CoreLocation
 import RxSwift
 import RxCocoa
 
-class BikeStationViewController: UIViewController , CLLocationManagerDelegate{
+class BikeStationViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
     
-   private var userLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
-    var stationMapVM = BikeStationMapViewModel()
+     var userLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
     
     fileprivate let bag = DisposeBag()
     let bikeViewModelInstance = BikeStationViewModel()
     let filteredBikeList = BehaviorRelay<[BikeStationDetailViewModel]>(value: [])
     var controller: BikeStationsMapieViewController?
-    
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        stationMapVM.setupManager()
-        stationMapVM.mangager.delegate = self
         bikeViewModelInstance.fetchUserList()
         bindUI()
         controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewID") as BikeStationsMapieViewController
-     
+        
+        Localization.shared.getUserLocation { [weak self] location in
+            DispatchQueue.main.async { [self] in
+                guard self != nil else {
+                    return
+                }
+                self?.tableview.reloadData()
+                self?.userLocation = location
+            }
+        }
+         
     }
     
     func bindUI() {
@@ -54,6 +61,7 @@ class BikeStationViewController: UIViewController , CLLocationManagerDelegate{
             self.tableview.deselectRow(at: indexPath, animated: true)
             self.controller?.stationDetail.accept(self.filteredBikeList.value[indexPath.row])
             self.navigationController?.pushViewController(self.controller ?? BikeStationsMapieViewController(), animated: true)
+            
         }).disposed(by: bag)
         
     }
@@ -63,14 +71,6 @@ class BikeStationViewController: UIViewController , CLLocationManagerDelegate{
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-       
-        DispatchQueue.main.async {
-                    self.tableview.reloadData()
-                }
-        let location = locations[0]
-        userLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-    }
-
 }
+
+

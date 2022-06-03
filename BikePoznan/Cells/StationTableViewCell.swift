@@ -22,6 +22,6 @@ class StationTableViewCell: UITableViewCell {
         bike_racksLabel.text = bikeStationDetail.stationData.properties.bike_racks
         bikesLabel.text = bikeStationDetail.stationData.properties.bikes
         labelLabel.text = bikeStationDetail.stationData.properties.label
-
+        
     }
 }

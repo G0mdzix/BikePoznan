@@ -12,6 +12,7 @@ import CoreLocation
 
 struct BikeStationDetailViewModel {
     var stationData = Stations(geometry: StationGeometry.init(coordinates: [0,0]), properties: StationDetails.init(label: "abc", bikes: "90", bike_racks: "80"))
+    
 }
 
 class BikeStationViewModel {
@@ -49,12 +50,14 @@ extension BikeStationDetailViewModel {
   
     func getDistance(userLocation: CLLocation) -> String
     {
+        
         let stationLocation = CLLocation(latitude: stationData.geometry.coordinates[1], longitude: stationData.geometry.coordinates[0])
         let distance = userLocation.distance(from: stationLocation)
                let convertedDistanceToString = String(Int(distance))
                return convertedDistanceToString+" meters"
     }
 }
+
 
 
 

@@ -20,36 +20,26 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
     @IBOutlet weak var bikeRacksLabel: UILabel!
     @IBOutlet weak var mapKit: MKMapView!
     
-
     private let disposeBag = DisposeBag()
      var stationDetail = BehaviorRelay<BikeStationDetailViewModel>(value: BikeStationDetailViewModel())
      var stationDetailObservel: Observable<BikeStationDetailViewModel> {
          return stationDetail.asObservable()
      }
 
-    
-    var stationMapVM = BikeStationMapViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+        setUpPinLocation()
+        Localization.shared2.getUserLocation { [weak self] location in
+            DispatchQueue.main.async { [self] in
+                guard self != nil else {
+                    return
+                }
+                self?.updateDistance(userLocation: location)
+            }
+        }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-         super.viewDidAppear(animated)
-        stationMapVM.setupManager()
-        stationMapVM.mangager.delegate = self
-            setup()
-            setUpPinLocation()
-       
-     }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        let userLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        updateDistance(userLocation: userLocation)
-    }
-  
     func setUpPinLocation(){
         
         let stationPin = MKPointAnnotation()
@@ -59,9 +49,8 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
             stationPin.title = stationValue.stationData.properties.bikes
         }).disposed(by: disposeBag)
         mapKit.addAnnotation(stationPin)
-        let staionPinRegion = MKCoordinateRegion(center: stationPin.coordinate, span: stationMapVM.span)
+        let staionPinRegion = MKCoordinateRegion(center: stationPin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapKit.setRegion(staionPinRegion, animated: true)
-       
     }
     
     func setup(){
@@ -72,12 +61,12 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
             bikeRacksLabel.text = stationValue.stationData.properties.bike_racks
         }).disposed(by: disposeBag)
     }
-    
+ 
     func updateDistance(userLocation: CLLocation) {
        
-        stationDetailObservel.subscribe(onNext: { [self]  (stationValue) in
+         stationDetailObservel.subscribe(onNext: { [self]  (stationValue) in
             distanceLabel.text = stationValue.getDistance(userLocation: userLocation)
-        }).disposed(by: disposeBag)
-    }
+         }).disposed(by: disposeBag)
+     }
 }
 

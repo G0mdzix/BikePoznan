@@ -12,7 +12,7 @@ import CoreLocation
 import RxSwift
 import RxCocoa
 
-class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelegate {
+class BikeStationsMapieViewController: UIViewController {
 
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var labelLabel: UILabel!

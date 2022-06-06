@@ -22,7 +22,7 @@ class LocalizationHelper: NSObject, CLLocationManagerDelegate  {
     
     var completion: ((CLLocation) -> Void)?
     
-    private override init() {
+     override init() {
         super.init()
         mangager.delegate = self
         mangager.desiredAccuracy = kCLLocationAccuracyBestForNavigation

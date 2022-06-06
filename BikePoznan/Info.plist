@@ -6,6 +6,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allow to see current location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allow to see current location</string>
 	<key>UIApplicationSceneManifest</key>

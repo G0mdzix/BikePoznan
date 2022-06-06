@@ -11,7 +11,7 @@
 		2D9F5F23F7358799285FADCE /* Pods_BikePoznanTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29E414A49EB888EDF98DBE3 /* Pods_BikePoznanTests.framework */; };
 		B8CD6B7F2846C1AC0028E695 /* BikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6B7E2846C1AC0028E695 /* BikeViewModel.swift */; };
 		B8CD6B812846C1E50028E695 /* BikeStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6B802846C1E50028E695 /* BikeStationViewController.swift */; };
-		B8CD6B8B284A5F580028E695 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6B8A284A5F580028E695 /* Localization.swift */; };
+		B8CD6B8B284A5F580028E695 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6B8A284A5F580028E695 /* LocalizationHelper.swift */; };
 		B8D245112838091700773E8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D245102838091700773E8E /* AppDelegate.swift */; };
 		B8D245132838091700773E8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D245122838091700773E8E /* SceneDelegate.swift */; };
 		B8D245182838091700773E8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8D245162838091700773E8E /* Main.storyboard */; };
@@ -21,7 +21,7 @@
 		B8D245322838091800773E8E /* BikePoznanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D245312838091800773E8E /* BikePoznanUITests.swift */; };
 		B8D245342838091800773E8E /* BikePoznanUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D245332838091800773E8E /* BikePoznanUITestsLaunchTests.swift */; };
 		B8D245482838133300773E8E /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D245472838133300773E8E /* Webservice.swift */; };
-		B8D2454A283822E300773E8E /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D24549283822E300773E8E /* Stations.swift */; };
+		B8D2454A283822E300773E8E /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D24549283822E300773E8E /* Station.swift */; };
 		B8D24556283861B500773E8E /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D24555283861B500773E8E /* StationTableViewCell.swift */; };
 		B8D2455828390B6F00773E8E /* BikeStationMapViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D2455728390B6F00773E8E /* BikeStationMapViewControler.swift */; };
 		FE1F82CE45224287D5182591 /* Pods_BikePoznan_BikePoznanUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0529C7B3FFA9EA339777B9 /* Pods_BikePoznan_BikePoznanUITests.framework */; };
@@ -55,7 +55,7 @@
 		B07645406C1C961B72A00339 /* Pods_BikePoznan.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikePoznan.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8CD6B7E2846C1AC0028E695 /* BikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewModel.swift; sourceTree = "<group>"; };
 		B8CD6B802846C1E50028E695 /* BikeStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationViewController.swift; sourceTree = "<group>"; };
-		B8CD6B8A284A5F580028E695 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		B8CD6B8A284A5F580028E695 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
 		B8D2450D2838091700773E8E /* BikePoznan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikePoznan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D245102838091700773E8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8D245122838091700773E8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 		B8D245312838091800773E8E /* BikePoznanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePoznanUITests.swift; sourceTree = "<group>"; };
 		B8D245332838091800773E8E /* BikePoznanUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePoznanUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B8D245472838133300773E8E /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
-		B8D24549283822E300773E8E /* Stations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
+		B8D24549283822E300773E8E /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		B8D24555283861B500773E8E /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 		B8D2455728390B6F00773E8E /* BikeStationMapViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationMapViewControler.swift; sourceTree = "<group>"; };
 		B8D2455A2839B70E00773E8E /* Poznan.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Poznan.gpx; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		B8D2454128380C5600773E8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B8D24549283822E300773E8E /* Stations.swift */,
+				B8D24549283822E300773E8E /* Station.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D245472838133300773E8E /* Webservice.swift */,
-				B8CD6B8A284A5F580028E695 /* Localization.swift */,
+				B8CD6B8A284A5F580028E695 /* LocalizationHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -475,11 +475,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8D245112838091700773E8E /* AppDelegate.swift in Sources */,
-				B8D2454A283822E300773E8E /* Stations.swift in Sources */,
+				B8D2454A283822E300773E8E /* Station.swift in Sources */,
 				B8D245132838091700773E8E /* SceneDelegate.swift in Sources */,
 				B8D24556283861B500773E8E /* StationTableViewCell.swift in Sources */,
 				B8D245482838133300773E8E /* Webservice.swift in Sources */,
-				B8CD6B8B284A5F580028E695 /* Localization.swift in Sources */,
+				B8CD6B8B284A5F580028E695 /* LocalizationHelper.swift in Sources */,
 				B8CD6B812846C1E50028E695 /* BikeStationViewController.swift in Sources */,
 				B8CD6B7F2846C1AC0028E695 /* BikeViewModel.swift in Sources */,
 				B8D2455828390B6F00773E8E /* BikeStationMapViewControler.swift in Sources */,

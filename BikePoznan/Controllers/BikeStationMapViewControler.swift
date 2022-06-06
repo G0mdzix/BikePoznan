@@ -20,11 +20,7 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
     @IBOutlet weak var bikeRacksLabel: UILabel!
     @IBOutlet weak var mapKit: MKMapView!
     
-    private let disposeBag = DisposeBag()
-     var stationDetail = BehaviorRelay<BikeStationDetailViewModel>(value: BikeStationDetailViewModel())
-     var stationDetailObservel: Observable<BikeStationDetailViewModel> {
-         return stationDetail.asObservable()
-     }
+    var station: Station?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,32 +37,23 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
     }
 
     func setUpPinLocation(){
-        
         let stationPin = MKPointAnnotation()
         self.mapKit.showsUserLocation = true
-        stationDetailObservel.subscribe(onNext: { (stationValue) in
-            stationPin.coordinate =  CLLocationCoordinate2D(latitude: stationValue.stationData.geometry.coordinates[1], longitude: stationValue.stationData.geometry.coordinates[0])
-            stationPin.title = stationValue.stationData.properties.bikes
-        }).disposed(by: disposeBag)
+        stationPin.coordinate =  CLLocationCoordinate2D(latitude: station!.geometry.coordinates[1], longitude: station!.geometry.coordinates[0]) //usunac koniecznie ! i zrobic unwrap
+            stationPin.title = station?.properties.bikes
         mapKit.addAnnotation(stationPin)
         let staionPinRegion = MKCoordinateRegion(center: stationPin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapKit.setRegion(staionPinRegion, animated: true)
     }
     
-    func setup(){
-        
-        stationDetailObservel.subscribe(onNext: { [self] (stationValue) in
-            labelLabel.text = stationValue.stationData.properties.label
-            bikesLabel.text = stationValue.stationData.properties.bikes
-            bikeRacksLabel.text = stationValue.stationData.properties.bike_racks
-        }).disposed(by: disposeBag)
+    func setup() { //setup labels
+            labelLabel.text = station?.properties.label
+            bikesLabel.text = station?.properties.bikes
+            bikeRacksLabel.text = station?.properties.bike_racks
     }
  
     func updateDistance(userLocation: CLLocation) {
-       
-         stationDetailObservel.subscribe(onNext: { [self]  (stationValue) in
-            distanceLabel.text = stationValue.getDistance(userLocation: userLocation)
-         }).disposed(by: disposeBag)
+            distanceLabel.text = station?.getDistance(userLocation: userLocation)
      }
 }
 

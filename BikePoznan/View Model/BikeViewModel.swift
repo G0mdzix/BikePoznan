@@ -10,54 +10,24 @@ import RxSwift
 import RxCocoa
 import CoreLocation
 
-struct BikeStationDetailViewModel {
-    var stationData = Stations(geometry: StationGeometry.init(coordinates: [0,0]), properties: StationDetails.init(label: "abc", bikes: "90", bike_racks: "80"))
-    
-}
-
 class BikeStationViewModel {
     
-    let request = Webservice()
-    var stations: Observable<[Stations]>?
-       private let bikeStationViewModel = BehaviorRelay<[BikeStationDetailViewModel]>(value: [])
-       var bikeStationViewModelObserver: Observable<[BikeStationDetailViewModel]> {
-           return bikeStationViewModel.asObservable()
+    let webservice = Webservice()
+    private let bikeStationsList = BehaviorRelay<[Station]>(value: [])
+    var bikeStationsListObserver: Observable<[Station]> {
+           return bikeStationsList.asObservable()
        }
  
     private let disposeBag = DisposeBag()
     
     func fetchUserList() {
-        stations = request.getBikeStations() 
-        stations?.subscribe(onNext: { (value) in
-            var bikeViewModelArray = [BikeStationDetailViewModel]()
-            for index in 0..<value.count {
-                var station = BikeStationDetailViewModel()
-                station.stationData = value[index]
-                bikeViewModelArray.append(station)
-            }
-            self.bikeStationViewModel.accept(bikeViewModelArray)
+        webservice.getBikeStations().subscribe(onNext: { (value) in
+            self.bikeStationsList.accept(value)
         }, onError: { (error) in
-            _ = self.bikeStationViewModel.catchError { (error) in
+            _ = self.bikeStationsList.catchError { (error) in
                 Observable.empty()
             }
             print(error.localizedDescription)
         }).disposed(by: disposeBag)
     }
 }
-
-
-extension BikeStationDetailViewModel {
-  
-    func getDistance(userLocation: CLLocation) -> String
-    {
-        
-        let stationLocation = CLLocation(latitude: stationData.geometry.coordinates[1], longitude: stationData.geometry.coordinates[0])
-        let distance = userLocation.distance(from: stationLocation)
-               let convertedDistanceToString = String(Int(distance))
-               return convertedDistanceToString+" meters"
-    }
-}
-
-
-
-

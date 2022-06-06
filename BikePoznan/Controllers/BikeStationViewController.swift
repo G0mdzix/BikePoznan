@@ -18,17 +18,13 @@ class BikeStationViewController: UIViewController {
      var userLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
     
     fileprivate let bag = DisposeBag()
-    let bikeViewModelInstance = BikeStationViewModel()
-    let filteredBikeList = BehaviorRelay<[BikeStationDetailViewModel]>(value: [])
-    var controller: BikeStationsMapieViewController?
-
-    
+    let bikeViewModelInstance = BikeStationViewModel() //bikeViewModel - change name
+    let filteredBikeList = BehaviorRelay<[Station]>(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bikeViewModelInstance.fetchUserList()
         bindUI()
-        controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewID") as BikeStationsMapieViewController
         
         Localization.shared.getUserLocation { [weak self] location in
             DispatchQueue.main.async { [self] in
@@ -44,7 +40,7 @@ class BikeStationViewController: UIViewController {
     
     func bindUI() {
         
-        bikeViewModelInstance.bikeStationViewModelObserver.subscribe(onNext: { (value) in
+        bikeViewModelInstance.bikeStationsListObserver.subscribe(onNext: { (value) in
             self.filteredBikeList.accept(value)
         },onError: { error in
             self.errorAlert()
@@ -52,15 +48,16 @@ class BikeStationViewController: UIViewController {
         tableview.tableFooterView = UIView()
         
         filteredBikeList.bind(to: tableview.rx.items(cellIdentifier: "StationTableViewCell", cellType: StationTableViewCell.self)) { row, model, cell in
-            cell.configureCell(bikeStationDetail: model)
+            cell.configureCell(station: model)
             cell.distanceLabel.text = model.getDistance(userLocation: self.userLocation)
         }.disposed(by: bag)
         
 
         tableview.rx.itemSelected.subscribe(onNext: { (indexPath) in
+            let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewID") as BikeStationsMapieViewController
             self.tableview.deselectRow(at: indexPath, animated: true)
-            self.controller?.stationDetail.accept(self.filteredBikeList.value[indexPath.row])
-            self.navigationController?.pushViewController(self.controller ?? BikeStationsMapieViewController(), animated: true)
+            controller.station = self.filteredBikeList.value[indexPath.row]
+            self.navigationController?.pushViewController(controller, animated: true) //unwrap
             
         }).disposed(by: bag)
         

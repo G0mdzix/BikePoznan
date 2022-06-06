@@ -18,29 +18,27 @@ class BikeStationViewController: UIViewController {
      var userLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
     
     fileprivate let bag = DisposeBag()
-    let bikeViewModelInstance = BikeStationViewModel() //bikeViewModel - change name
+    let bikeViewModel = BikeStationViewModel() 
     let filteredBikeList = BehaviorRelay<[Station]>(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bikeViewModelInstance.fetchUserList()
+        bikeViewModel.fetchUserList()
         bindUI()
-        
-        Localization.shared.getUserLocation { [weak self] location in
-            DispatchQueue.main.async { [self] in
-                guard self != nil else {
-                    return
-                }
-                self?.tableview.reloadData()
-                self?.userLocation = location
-            }
-        }
-         
     }
     
     func bindUI() {
-        
-        bikeViewModelInstance.bikeStationsListObserver.subscribe(onNext: { (value) in
+        LocalizationHelper.singleton.currentLocation.subscribe(onNext: { (value) in
+            guard let location = value else {
+                return
+            }
+            self.tableview.reloadData()
+            self.userLocation = location
+        },onError: { error in
+            self.errorAlert()
+        }).disposed(by: bag)
+
+        bikeViewModel.bikeStationsListObserver.subscribe(onNext: { (value) in
             self.filteredBikeList.accept(value)
         },onError: { error in
             self.errorAlert()
@@ -57,7 +55,7 @@ class BikeStationViewController: UIViewController {
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewID") as BikeStationsMapieViewController
             self.tableview.deselectRow(at: indexPath, animated: true)
             controller.station = self.filteredBikeList.value[indexPath.row]
-            self.navigationController?.pushViewController(controller, animated: true) //unwrap
+            self.navigationController?.pushViewController(controller, animated: true)
             
         }).disposed(by: bag)
         

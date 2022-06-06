@@ -20,40 +20,43 @@ class BikeStationsMapieViewController: UIViewController, CLLocationManagerDelega
     @IBOutlet weak var bikeRacksLabel: UILabel!
     @IBOutlet weak var mapKit: MKMapView!
     
-    var station: Station?
-
+    var station: Station!
+    fileprivate let bag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        setupLabels()
         setUpPinLocation()
-        Localization.shared2.getUserLocation { [weak self] location in
-            DispatchQueue.main.async { [self] in
-                guard self != nil else {
-                    return
-                }
-                self?.updateDistance(userLocation: location)
+        bindLocation()
+    }
+    
+    func bindLocation() {
+        LocalizationHelper.singleton.currentLocation.subscribe(onNext: { (value) in
+            guard let location = value else {
+                return
             }
-        }
+            self.updateDistance(userLocation: location)
+        }).disposed(by: bag)
     }
 
     func setUpPinLocation(){
         let stationPin = MKPointAnnotation()
         self.mapKit.showsUserLocation = true
-        stationPin.coordinate =  CLLocationCoordinate2D(latitude: station!.geometry.coordinates[1], longitude: station!.geometry.coordinates[0]) //usunac koniecznie ! i zrobic unwrap
-            stationPin.title = station?.properties.bikes
+        stationPin.coordinate =  CLLocationCoordinate2D(latitude: station.geometry.coordinates[1], longitude: station.geometry.coordinates[0])
+            stationPin.title = station.properties.bikes
         mapKit.addAnnotation(stationPin)
         let staionPinRegion = MKCoordinateRegion(center: stationPin.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapKit.setRegion(staionPinRegion, animated: true)
     }
     
-    func setup() { //setup labels
-            labelLabel.text = station?.properties.label
-            bikesLabel.text = station?.properties.bikes
-            bikeRacksLabel.text = station?.properties.bike_racks
+    func setupLabels() {
+            labelLabel.text = station.properties.label
+            bikesLabel.text = station.properties.bikes
+            bikeRacksLabel.text = station.properties.bike_racks
     }
  
     func updateDistance(userLocation: CLLocation) {
-            distanceLabel.text = station?.getDistance(userLocation: userLocation)
+            distanceLabel.text = station.getDistance(userLocation: userLocation)
      }
 }
 

@@ -39,7 +39,5 @@ extension Station {
             let convertedDistanceToString = "► \(String(Int(distance))) m"
             return convertedDistanceToString
         }
-           
     }
- 
 }

@@ -17,8 +17,9 @@ class StationTableViewCell: UITableViewCell {
     @IBOutlet weak var distanceLabel: UILabel!
     
     func configureCell(station: Station) {
+        labelLabel.text = station.properties.label ?? ""
         bike_racksLabel.text = station.properties.bike_racks
-        bikesLabel.text = station.properties.bikes
+        bikesLabel.text = station.properties.bikes // #
         labelLabel.text = station.properties.label
     }
 }

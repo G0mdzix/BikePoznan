@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 
+
 class BikeStationViewModel {
     
     let webservice = Webservice()
@@ -20,6 +21,7 @@ class BikeStationViewModel {
  
     private let disposeBag = DisposeBag()
     
+  
     func fetchUserList() {
         webservice.getBikeStations().subscribe(onNext: { (value) in
             self.bikeStationsList.accept(value)
@@ -30,4 +32,5 @@ class BikeStationViewModel {
             print(error.localizedDescription)
         }).disposed(by: disposeBag)
     }
+    
 }

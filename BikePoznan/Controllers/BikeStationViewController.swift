@@ -14,12 +14,15 @@ import RxCocoa
 class BikeStationViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var searchTextField: UITextField!
     
-     var userLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
+    var userLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
+    
     
     fileprivate let bag = DisposeBag()
     let bikeViewModel = BikeStationViewModel() 
     let filteredBikeList = BehaviorRelay<[Station]>(value: [])
+    let bikeList = BehaviorRelay<[Station]>(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,11 @@ class BikeStationViewController: UIViewController {
     }
     
     func bindUI() {
+       
+        searchTextField.placeholder = "Poszukiwana stacja?"
+        let textField = UITextField()
+        textField.textContentType = .emailAddress
+        
         LocalizationHelper.singleton.currentLocation.subscribe(onNext: { (value) in
             guard let location = value else {
                 return
@@ -40,17 +48,17 @@ class BikeStationViewController: UIViewController {
 
         bikeViewModel.bikeStationsListObserver.subscribe(onNext: { (value) in
             self.filteredBikeList.accept(value)
+            self.bikeList.accept(value)
         },onError: { error in
             self.errorAlert()
         }).disposed(by: bag)
         tableview.tableFooterView = UIView()
-        
         filteredBikeList.bind(to: tableview.rx.items(cellIdentifier: "StationTableViewCell", cellType: StationTableViewCell.self)) { row, model, cell in
             cell.configureCell(station: model)
             cell.distanceLabel.text = model.getDistance(userLocation: self.userLocation)
+           
         }.disposed(by: bag)
         
-
         tableview.rx.itemSelected.subscribe(onNext: { (indexPath) in
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MapViewID") as BikeStationsMapieViewController
             self.tableview.deselectRow(at: indexPath, animated: true)
@@ -59,6 +67,12 @@ class BikeStationViewController: UIViewController {
             
         }).disposed(by: bag)
         
+        Observable.combineLatest(bikeList.asObservable(), searchTextField.rx.text, resultSelector: { users, search in
+            return users.filter { (user) -> Bool in
+                self.filterUserList(userModel: user, searchText: search )
+            }
+        }).bind(to: filteredBikeList).disposed(by: bag)
+        
     }
     
     func errorAlert() {
@@ -66,6 +80,16 @@ class BikeStationViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func filterUserList(userModel: Station, searchText: String?) -> Bool {
+        if let search = searchText, !search.isEmpty, !(userModel.properties.label.contains(search) ?? false) {
+            return false
+      
+        }
+        return true
+    }
+    
+    
 }
 
 

@@ -71,7 +71,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
-         identifier = "../BikePoznan/GPX Poznan/Poznan.gpx"
+         identifier = "../BikePoznan/GPX Poznan/PoznanByFoot.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

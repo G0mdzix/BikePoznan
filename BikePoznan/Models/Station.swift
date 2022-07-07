@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 struct StationsList: Codable { 
-    let features: [Station]
+    var features: [Station]
 }
 
 struct StationDetails: Codable{
@@ -33,11 +33,15 @@ extension Station {
         let stationLocation = CLLocation(latitude: geometry.coordinates[1], longitude: geometry.coordinates[0])
         let distance = userLocation.distance(from: stationLocation)
         if distance > 1000 {
-            let convertedDistanceToString = "► \(String(Double(round(distance)/1000))) km"
+            let convertedDistanceToString = "► \((Double(round(distance)/1000))) km"
             return convertedDistanceToString
         } else {
-            let convertedDistanceToString = "► \(String(Int(distance))) m"
+            let convertedDistanceToString = "► \((Int(distance))) m"
             return convertedDistanceToString
         }
     }
+
+    
 }
+
+

@@ -9,12 +9,14 @@
 import Foundation
 import CoreLocation
 
+import RxSwift
+
 struct StationsList: Codable { 
     var features: [Station]
 }
 
 struct StationDetails: Codable{
-    let label, bikes, bike_racks: String
+    let label, bikes, free_racks: String
 }
 
 struct StationGeometry: Codable{
@@ -26,22 +28,7 @@ struct Station: Codable{
     let properties: StationDetails
 }
 
-extension Station {
-  
-    func getDistance(userLocation: CLLocation) -> String
-    {
-        let stationLocation = CLLocation(latitude: geometry.coordinates[1], longitude: geometry.coordinates[0])
-        let distance = userLocation.distance(from: stationLocation)
-        if distance > 1000 {
-            let convertedDistanceToString = "► \((Double(round(distance)/1000))) km"
-            return convertedDistanceToString
-        } else {
-            let convertedDistanceToString = "► \((Int(distance))) m"
-            return convertedDistanceToString
-        }
-    }
 
-    
-}
+
 
 

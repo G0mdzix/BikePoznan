@@ -19,9 +19,9 @@ class Webservice{
             self.dataTask = self.session.dataTask(with: self.url, completionHandler: {
                 (data, response, error) in
             do {
-                var stationListModel: StationsList = try! JSONDecoder().decode(StationsList.self, from: data
+                let stationListModel: StationsList = try! JSONDecoder().decode(StationsList.self, from: data
                     ?? Data())
-             //   stationListModel.features.sort(by: {$0.properties.bikes > $1.properties.bikes})
+             
                 observer.onNext(stationListModel.features as! T)
             } catch let error {
                 observer.onError(error)

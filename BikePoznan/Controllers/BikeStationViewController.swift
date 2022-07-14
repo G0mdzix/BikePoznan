@@ -16,18 +16,26 @@ class BikeStationViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     
-    var userLocation: CLLocation = CLLocation(latitude: 0, longitude: 0)
-    
+    let refreshControl = UIRefreshControl()
     
     fileprivate let bag = DisposeBag()
     let bikeViewModel = BikeStationViewModel() 
-    let filteredBikeList = BehaviorRelay<[Station]>(value: [])
-    let bikeList = BehaviorRelay<[Station]>(value: [])
+    var filteredBikeList = BehaviorRelay<[BikeStationDetailViewModel]>(value: []) 
+    let bikeList = BehaviorRelay<[BikeStationDetailViewModel]>(value: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bikeViewModel.fetchUserList()
         bindUI()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableview.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        bikeViewModel.fetchUserList()
+        tableview.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func bindUI() {
@@ -37,11 +45,10 @@ class BikeStationViewController: UIViewController {
         textField.textContentType = .emailAddress
         
         LocalizationHelper.singleton.currentLocation.subscribe(onNext: { (value) in
-            guard let location = value else {
+            guard value != nil else {
                 return
             }
             self.tableview.reloadData()
-            self.userLocation = location
         },onError: { error in
             self.errorAlert()
         }).disposed(by: bag)
@@ -55,7 +62,8 @@ class BikeStationViewController: UIViewController {
         tableview.tableFooterView = UIView()
         filteredBikeList.bind(to: tableview.rx.items(cellIdentifier: "StationTableViewCell", cellType: StationTableViewCell.self)) { row, model, cell in
             cell.configureCell(station: model)
-            cell.distanceLabel.text = model.getDistance(userLocation: self.userLocation)
+            cell.animationOfLabels(station: model)
+            
            
         }.disposed(by: bag)
         
@@ -72,7 +80,6 @@ class BikeStationViewController: UIViewController {
                 self.filterUserList(userModel: user, searchText: search )
             }
         }).bind(to: filteredBikeList).disposed(by: bag)
-        
     }
     
     func errorAlert() {
@@ -81,8 +88,8 @@ class BikeStationViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func filterUserList(userModel: Station, searchText: String?) -> Bool {
-        if let search = searchText, !search.isEmpty, !(userModel.properties.label.contains(search) ?? false) {
+    func filterUserList(userModel: BikeStationDetailViewModel, searchText: String?) -> Bool {
+        if let search = searchText, !search.isEmpty, !(userModel.stationData.properties.label.contains(search) ) {
             return false
       
         }
@@ -91,5 +98,4 @@ class BikeStationViewController: UIViewController {
     
     
 }
-
 

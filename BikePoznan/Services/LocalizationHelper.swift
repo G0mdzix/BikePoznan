@@ -16,9 +16,11 @@ class LocalizationHelper: NSObject, CLLocationManagerDelegate  {
     static let singleton = LocalizationHelper()
     
     let mangager = CLLocationManager()
+    var station: Station!
     
     let currentLocationRelay: BehaviorRelay<CLLocation?> = BehaviorRelay(value: nil)
     lazy var currentLocation: Observable<CLLocation?> = self.currentLocationRelay.asObservable().share(replay: 1, scope: .forever)
+
     
     var completion: ((CLLocation) -> Void)?
     
@@ -37,7 +39,10 @@ class LocalizationHelper: NSObject, CLLocationManagerDelegate  {
         guard let location = locations.last else {
             return
         }
+        
+ 
         currentLocationRelay.accept(location)
+
     }
     
     

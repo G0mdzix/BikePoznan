@@ -16,10 +16,18 @@ class StationTableViewCell: UITableViewCell {
     @IBOutlet weak var labelLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     
-    func configureCell(station: Station) {
-        labelLabel.text = station.properties.label ?? ""
-        bike_racksLabel.text = station.properties.bike_racks
-        bikesLabel.text = station.properties.bikes // #
-        labelLabel.text = station.properties.label
+    func configureCell(station: BikeStationDetailViewModel) {
+        bike_racksLabel.text = station.stationData.properties.free_racks
+        bikesLabel.text = station.stationData.properties.bikes
+        labelLabel.text = station.stationData.properties.label
+        distanceLabel.text = String(station.getDistance())
+        
     }
+    func animationOfLabels(station: BikeStationDetailViewModel){
+        
+        let animation = Animations()
+        animation.transitionFlipFromBottom(label: distanceLabel)
+        animation.changeLabelToRed(label: bikesLabel, numberOfBikes: station.stationData.properties.bikes)
+    }
+    
 }

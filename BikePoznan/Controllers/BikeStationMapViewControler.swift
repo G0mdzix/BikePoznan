@@ -21,6 +21,7 @@ class BikeStationsMapieViewController: UIViewController {
     @IBOutlet weak var mapKit: MKMapView!
     @IBOutlet weak var centerButton: UIButton!
     
+    let animation = Animations()
     var station: BikeStationDetailViewModel!
     fileprivate let bag = DisposeBag()
     var autoRouting = AutoRouting()
@@ -35,11 +36,13 @@ class BikeStationsMapieViewController: UIViewController {
     }
     
     func bindLocation() {
-        LocalizationHelper.singleton.currentLocation.subscribe(onNext: { (value) in
+        LocalizationHelper.singleton.currentLocation.subscribe(onNext: { [self] (value) in
             guard let location = value else {
                 return
             }
-            self.updateDistance(userLocation: location)
+            distanceLabel.text = station.newDistance(distance: self.station.getDistance())
+            animation.transitionFlipFromBottom(label: distanceLabel)
+            animation.changeLabelToRed(label: bikesLabel, numberOfBikes: station.stationData.properties.bikes)
         }).disposed(by: bag)
     }
 
@@ -55,13 +58,9 @@ class BikeStationsMapieViewController: UIViewController {
         labelLabel.text = station.stationData.properties.label
         bikesLabel.text = station.stationData.properties.bikes
         bikeRacksLabel.text = station.stationData.properties.free_racks
-        distanceLabel.text = String(station.getDistance())
+     
     }
  
-    func updateDistance(userLocation: CLLocation) {
-        distanceLabel.text = String(station.getDistance())
-     }
-    
     func getRoute(){
         
         LocalizationHelper.singleton.currentLocation.subscribe(onNext: { [self] (value) in

@@ -20,8 +20,7 @@ class StationTableViewCell: UITableViewCell {
         bike_racksLabel.text = station.stationData.properties.free_racks
         bikesLabel.text = station.stationData.properties.bikes
         labelLabel.text = station.stationData.properties.label
-        distanceLabel.text = String(station.getDistance())
-        
+        distanceLabel.text = station.newDistance(distance: station.getDistance())
     }
     func animationOfLabels(station: BikeStationDetailViewModel){
         

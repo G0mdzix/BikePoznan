@@ -91,7 +91,7 @@ class BikeStationViewController: UIViewController {
     func filterUserList(userModel: BikeStationDetailViewModel, searchText: String?) -> Bool {
         if let search = searchText, !search.isEmpty, !(userModel.stationData.properties.label.contains(search) ) {
             return false
-      
+            
         }
         return true
     }

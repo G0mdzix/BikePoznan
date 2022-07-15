@@ -19,7 +19,7 @@ struct BikeStationDetailViewModel {
 
 extension BikeStationDetailViewModel {
     
-    func getDistance() -> Int
+    func getDistance() -> Double
     {
         let disposeBag = DisposeBag()
         var localization: CLLocation!
@@ -30,7 +30,21 @@ extension BikeStationDetailViewModel {
             localization = location
         }).disposed(by: disposeBag)
         let stationLocation = CLLocation(latitude: stationData.geometry.coordinates[1], longitude: stationData.geometry.coordinates[0])
-        let intDistance = Int(localization.distance(from: stationLocation))
+        let intDistance = Double(localization.distance(from: stationLocation))
         return intDistance
+    }
+}
+
+extension BikeStationDetailViewModel {
+
+    func newDistance(distance: Double) -> String{
+        if distance > 1000 {
+            let stringDistanse = "► \((Double(round(distance)/1000))) km"
+            return stringDistanse
+        }
+        else {
+            let stringDistanse = "► \((Int(distance))) m"
+            return stringDistanse
+        }
     }
 }

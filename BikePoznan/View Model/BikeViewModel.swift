@@ -38,7 +38,7 @@ class BikeStationViewModel {
                  }
                  self.bikeStationsList.accept(bikeViewModelArray)
              }, onError: { (error) in
-                 _ = self.bikeStationsList.catchError { (error) in
+                 _ = self.bikeStationsList.catch { (error) in
                      Observable.empty()
                  }
                  print(error.localizedDescription)

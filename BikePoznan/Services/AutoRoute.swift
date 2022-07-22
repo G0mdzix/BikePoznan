@@ -8,8 +8,7 @@
 import Foundation
 import MapKit
 import CoreLocation
-import RxSwift
-import RxCocoa
+
 
 class AutoRouting {
     
@@ -40,6 +39,7 @@ class AutoRouting {
             for route in mapKit.overlays
         {
                 mapKit.removeOverlay(route)
+               
         }}
         mapKit.addOverlay(route.polyline, level: MKOverlayLevel.aboveRoads)
         mapKit.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets.init(top: 80.0, left: 20.0, bottom: 100.0, right: 20.0), animated: true)

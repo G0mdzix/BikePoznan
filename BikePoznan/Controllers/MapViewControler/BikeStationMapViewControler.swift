@@ -19,7 +19,8 @@ class BikeStationsMapieViewController: UIViewController {
     @IBOutlet weak var bikesLabel: UILabel!
     @IBOutlet weak var bikeRacksLabel: UILabel!
     @IBOutlet weak var mapKit: MKMapView!
-    @IBOutlet weak var centerButton: UIButton!
+    @IBOutlet weak var segmentControler: UISegmentedControl!
+    @IBOutlet weak var stackView_1: UIStackView!
     
     let animation = Animations()
     var station: BikeStationDetailViewModel!
@@ -32,8 +33,11 @@ class BikeStationsMapieViewController: UIViewController {
         setUpPinLocation()
         bindLocation()
         getRoute()
+        segmentControler.addTarget(self, action: #selector(switchType), for: .valueChanged)
         self.mapKit.delegate = self
+        self.mapKit.showsUserLocation = true
     }
+    
     
     func bindLocation() {
         LocalizationHelper.singleton.currentLocation.subscribe(onNext: { [self] (value) in
@@ -47,17 +51,17 @@ class BikeStationsMapieViewController: UIViewController {
     }
 
     func setUpPinLocation(){
-        let stationPin = MKPointAnnotation()
-        self.mapKit.showsUserLocation = true
-        stationPin.coordinate =  CLLocationCoordinate2D(latitude: station.stationData.geometry.coordinates[1], longitude: station.stationData.geometry.coordinates[0])
-        stationPin.title = station.stationData.properties.bikes
+        let stationPin = MapViewPins.init(title: station.stationData.properties.label, subtitle: station.stationData.properties.bikes, image: UIImage(named: "Icon_2")!, coordinate: CLLocationCoordinate2D(latitude: station.stationData.geometry.coordinates[1], longitude: station.stationData.geometry.coordinates[0]))
         mapKit.addAnnotation(stationPin)
+    
     }
+    
     
     func setupLabels() {
         labelLabel.text = station.stationData.properties.label
         bikesLabel.text = station.stationData.properties.bikes
         bikeRacksLabel.text = station.stationData.properties.free_racks
+        stackView_1.insertCustomizedViewIntoStack(background: Colors().red, cornerRadius: 60, shadowColor: UIColor.black.cgColor, shadowOpacity: 1, shadowRadius: 100)
      
     }
  
@@ -69,12 +73,4 @@ class BikeStationsMapieViewController: UIViewController {
     }
 }
 
-extension BikeStationsMapieViewController : MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-         let renderer = MKPolylineRenderer(overlay: overlay)
-         renderer.strokeColor = UIColor.red
-         renderer.lineWidth = 5.0
-         return renderer
-    }
-}
 

@@ -10,15 +10,13 @@ import UIKit
 
 class Animations {
     
-    let green = UIColor.systemGreen
-    let dark = UIColor.darkText
-    let red = UIColor.systemRed
+
     let station = BikeStationDetailViewModel()
     
     func transitionFlipFromBottom(label: UILabel) {
         
         UIView.transition(with: label, duration: 4, options: .transitionFlipFromBottom, animations: { [self]() -> Void in
-              label.textColor = dark
+            label.textColor = Colors().dark
           }, completion: {(_ finished: Bool) -> Void in
           })
 
@@ -26,7 +24,9 @@ class Animations {
     
     func changeLabelToRed(label: UILabel, numberOfBikes: String) {
         
-        if Int(numberOfBikes)! <= 4
+        let numberOfBikesWhenAnimationWillBegin = 4
+        
+        if Int(numberOfBikes)! <= numberOfBikesWhenAnimationWillBegin
          {
             let changeColor = CATransition()
             changeColor.duration = 3
@@ -59,4 +59,13 @@ class Animations {
          */
     }
   
+}
+
+struct Colors {
+    
+    let green = UIColor.systemGreen
+    let dark = UIColor.darkText
+    let red = UIColor.systemRed
+    let pinColor = UIColor(red: 0.75, green: 0.85, blue: 0.86, alpha: 1.00)
+    
 }

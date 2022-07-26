@@ -13,6 +13,12 @@
 		B80BF0D4285CD65300A3162D /* PoznanByFoot.gpx in Resources */ = {isa = PBXBuildFile; fileRef = B80BF0D3285CD65300A3162D /* PoznanByFoot.gpx */; };
 		B83F46E8287F8CBE0070E13F /* AnimationAndColorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46E7287F8CBE0070E13F /* AnimationAndColorService.swift */; };
 		B83F46EA287F964E0070E13F /* BikeStationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46E9287F964E0070E13F /* BikeStationDetailViewModel.swift */; };
+		B83F46EC28875A390070E13F /* SearchValidatior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46EB28875A390070E13F /* SearchValidatior.swift */; };
+		B83F46EF2889F02A0070E13F /* MapViewPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46EE2889F02A0070E13F /* MapViewPins.swift */; };
+		B83F46F2288A0BBB0070E13F /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46F1288A0BBB0070E13F /* UIImageExtensions.swift */; };
+		B83F46F4288A19620070E13F /* BikeStationsMapieViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46F3288A19620070E13F /* BikeStationsMapieViewControllerExtension.swift */; };
+		B83F46F9288A21D50070E13F /* StackViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46F8288A21D50070E13F /* StackViewExtensions.swift */; };
+		B83F46FD288F64000070E13F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83F46FC288F64000070E13F /* UIViewExtension.swift */; };
 		B8CD6B7F2846C1AC0028E695 /* BikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6B7E2846C1AC0028E695 /* BikeViewModel.swift */; };
 		B8CD6B812846C1E50028E695 /* BikeStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6B802846C1E50028E695 /* BikeStationViewController.swift */; };
 		B8CD6B8B284A5F580028E695 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CD6B8A284A5F580028E695 /* LocalizationHelper.swift */; };
@@ -61,6 +67,12 @@
 		B80BF0D3285CD65300A3162D /* PoznanByFoot.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PoznanByFoot.gpx; sourceTree = "<group>"; };
 		B83F46E7287F8CBE0070E13F /* AnimationAndColorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationAndColorService.swift; sourceTree = "<group>"; };
 		B83F46E9287F964E0070E13F /* BikeStationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationDetailViewModel.swift; sourceTree = "<group>"; };
+		B83F46EB28875A390070E13F /* SearchValidatior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchValidatior.swift; sourceTree = "<group>"; };
+		B83F46EE2889F02A0070E13F /* MapViewPins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewPins.swift; sourceTree = "<group>"; };
+		B83F46F1288A0BBB0070E13F /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		B83F46F3288A19620070E13F /* BikeStationsMapieViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationsMapieViewControllerExtension.swift; sourceTree = "<group>"; };
+		B83F46F8288A21D50070E13F /* StackViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtensions.swift; sourceTree = "<group>"; };
+		B83F46FC288F64000070E13F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		B8CD6B7E2846C1AC0028E695 /* BikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewModel.swift; sourceTree = "<group>"; };
 		B8CD6B802846C1E50028E695 /* BikeStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationViewController.swift; sourceTree = "<group>"; };
 		B8CD6B8A284A5F580028E695 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
@@ -112,6 +124,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B83F46ED2889F0040070E13F /* Pins */ = {
+			isa = PBXGroup;
+			children = (
+				B83F46EE2889F02A0070E13F /* MapViewPins.swift */,
+			);
+			path = Pins;
+			sourceTree = "<group>";
+		};
+		B83F46F0288A0B9E0070E13F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B83F46F5288A20090070E13F /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B83F46F5288A20090070E13F /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B83F46F1288A0BBB0070E13F /* UIImageExtensions.swift */,
+				B83F46F8288A21D50070E13F /* StackViewExtensions.swift */,
+				B83F46FC288F64000070E13F /* UIViewExtension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		B83F46F6288A20220070E13F /* MapViewControler */ = {
+			isa = PBXGroup;
+			children = (
+				B8D2455728390B6F00773E8E /* BikeStationMapViewControler.swift */,
+				B83F46F3288A19620070E13F /* BikeStationsMapieViewControllerExtension.swift */,
+				B83F46ED2889F0040070E13F /* Pins */,
+			);
+			path = MapViewControler;
+			sourceTree = "<group>";
+		};
+		B83F46F7288A20420070E13F /* TableViewControler */ = {
+			isa = PBXGroup;
+			children = (
+				B8CD6B802846C1E50028E695 /* BikeStationViewController.swift */,
+			);
+			path = TableViewControler;
+			sourceTree = "<group>";
+		};
 		B8D245042838091700773E8E = {
 			isa = PBXGroup;
 			children = (
@@ -137,9 +193,9 @@
 		B8D2450F2838091700773E8E /* BikePoznan */ = {
 			isa = PBXGroup;
 			children = (
+				B83F46F0288A0B9E0070E13F /* Extensions */,
 				B8D2454428380D5A00773E8E /* Controllers */,
 				B8D245592839B6EE00773E8E /* GPX Poznan */,
-				B8D245522838614F00773E8E /* Cells */,
 				B8D2454F28384ED400773E8E /* View Model */,
 				B8D2454228380C6700773E8E /* Services */,
 				B8D2454128380C5600773E8E /* Models */,
@@ -157,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D245272838091800773E8E /* BikePoznanTests.swift */,
+				B83F46EB28875A390070E13F /* SearchValidatior.swift */,
 			);
 			path = BikePoznanTests;
 			sourceTree = "<group>";
@@ -192,8 +249,9 @@
 		B8D2454428380D5A00773E8E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B8D2455728390B6F00773E8E /* BikeStationMapViewControler.swift */,
-				B8CD6B802846C1E50028E695 /* BikeStationViewController.swift */,
+				B8D245522838614F00773E8E /* CellView */,
+				B83F46F7288A20420070E13F /* TableViewControler */,
+				B83F46F6288A20220070E13F /* MapViewControler */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,12 +265,12 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
-		B8D245522838614F00773E8E /* Cells */ = {
+		B8D245522838614F00773E8E /* CellView */ = {
 			isa = PBXGroup;
 			children = (
 				B8D24555283861B500773E8E /* StationTableViewCell.swift */,
 			);
-			path = Cells;
+			path = CellView;
 			sourceTree = "<group>";
 		};
 		B8D245592839B6EE00773E8E /* GPX Poznan */ = {
@@ -492,13 +550,18 @@
 				B8D245132838091700773E8E /* SceneDelegate.swift in Sources */,
 				B8D24556283861B500773E8E /* StationTableViewCell.swift in Sources */,
 				B83F46E8287F8CBE0070E13F /* AnimationAndColorService.swift in Sources */,
+				B83F46F9288A21D50070E13F /* StackViewExtensions.swift in Sources */,
 				B8D245482838133300773E8E /* Webservice.swift in Sources */,
 				B83F46EA287F964E0070E13F /* BikeStationDetailViewModel.swift in Sources */,
+				B83F46FD288F64000070E13F /* UIViewExtension.swift in Sources */,
+				B83F46F4288A19620070E13F /* BikeStationsMapieViewControllerExtension.swift in Sources */,
 				B8CD6B8B284A5F580028E695 /* LocalizationHelper.swift in Sources */,
 				B80BF0D2285CC48200A3162D /* AutoRoute.swift in Sources */,
+				B83F46F2288A0BBB0070E13F /* UIImageExtensions.swift in Sources */,
 				B8CD6B812846C1E50028E695 /* BikeStationViewController.swift in Sources */,
 				B8CD6B7F2846C1AC0028E695 /* BikeViewModel.swift in Sources */,
 				B8D2455828390B6F00773E8E /* BikeStationMapViewControler.swift in Sources */,
+				B83F46EF2889F02A0070E13F /* MapViewPins.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83F46EC28875A390070E13F /* SearchValidatior.swift in Sources */,
 				B8D245282838091800773E8E /* BikePoznanTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

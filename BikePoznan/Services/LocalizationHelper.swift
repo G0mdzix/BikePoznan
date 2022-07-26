@@ -39,13 +39,6 @@ class LocalizationHelper: NSObject, CLLocationManagerDelegate  {
         guard let location = locations.last else {
             return
         }
-        
- 
         currentLocationRelay.accept(location)
-
     }
-    
-    
-    
-    
 }

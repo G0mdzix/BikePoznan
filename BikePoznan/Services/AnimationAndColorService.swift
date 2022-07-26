@@ -8,17 +8,24 @@
 import Foundation
 import UIKit
 
-class Animations {
+struct Colors {
     
     let green = UIColor.systemGreen
     let dark = UIColor.darkText
+    let white = UIColor.white
     let red = UIColor.systemRed
+    let pinColor = UIColor(red: 0.75, green: 0.85, blue: 0.86, alpha: 1.00)
+    let viewStackColor = UIColor(red: 0, green: 0.7098, blue: 0.749, alpha: 1.0) /* #00b5bf */
+    let t = UIColor(red: 0, green: 0.6667, blue: 0.2314, alpha: 1.0) /* #00aa3b */
+}
+
+class Animations {
+    
     let station = BikeStationDetailViewModel()
     
-    func transitionFlipFromBottom(label: UILabel) {
-        
+    func transitionFlipFromBottom(label: UILabel, color: UIColor) {
         UIView.transition(with: label, duration: 4, options: .transitionFlipFromBottom, animations: { [self]() -> Void in
-              label.textColor = dark
+            label.textColor = color
           }, completion: {(_ finished: Bool) -> Void in
           })
 
@@ -26,7 +33,8 @@ class Animations {
     
     func changeLabelToRed(label: UILabel, numberOfBikes: String) {
         
-        if Int(numberOfBikes)! <= 4
+        let numberOfBikesWhenAnimationWillBegin = 4
+        if Int(numberOfBikes)! <= numberOfBikesWhenAnimationWillBegin
          {
             let changeColor = CATransition()
             changeColor.duration = 3
@@ -42,21 +50,7 @@ class Animations {
              label.textColor = .systemGreen
          }
     }
-    
-    func braknazwy(){
-        /*
-         var counter = station.stationData.properties.bikes {
-            didSet {
-              if oldValue != counter {
-                print("counter was changed from \(oldValue) to \(counter)")
-                  UIView.transition(with: bikesLabel, duration: 1.8, options: .transitionFlipFromBottom, animations: {() -> Void in
-                        self.bikesLabel.textColor = UIColor.blue // # ifa od kolorków
-                    }, completion: {(_ finished: Bool) -> Void in
-                    })
-              }
-            }
-          }
-         */
-    }
   
 }
+
+

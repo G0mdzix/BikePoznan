@@ -23,9 +23,8 @@ class StationTableViewCell: UITableViewCell {
         distanceLabel.text = station.newDistance(distance: station.getDistance())
     }
     func animationOfLabels(station: BikeStationDetailViewModel){
-        
         let animation = Animations()
-        animation.transitionFlipFromBottom(label: distanceLabel)
+        animation.transitionFlipFromBottom(label: distanceLabel, color: .darkText)
         animation.changeLabelToRed(label: bikesLabel, numberOfBikes: station.stationData.properties.bikes)
     }
     

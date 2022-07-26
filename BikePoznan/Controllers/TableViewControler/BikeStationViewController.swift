@@ -30,6 +30,7 @@ class BikeStationViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableview.addSubview(refreshControl)
+        view.setGradientBackground(colorOne: UIColor(named: "Background 1")!, colorTwo: UIColor(named: "Background 2")!)// #!!
     }
     
     @objc func refresh(_ sender: AnyObject) {

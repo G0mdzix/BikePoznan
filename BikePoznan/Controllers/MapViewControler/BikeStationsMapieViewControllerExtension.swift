@@ -13,7 +13,7 @@ extension BikeStationsMapieViewController : MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
          let renderer = MKPolylineRenderer(overlay: overlay)
-         renderer.strokeColor = UIColor.red
+         renderer.strokeColor = UIColor(named: "RouteColor")!
          renderer.lineWidth = 5.0
          return renderer
     }
@@ -35,7 +35,7 @@ extension BikeStationsMapieViewController : MKMapViewDelegate {
         }
         if let annotationView = annotationView {
             annotationView.canShowCallout = true
-            annotationView.image = myAnnotation.image?.withBackground(color: Colors().pinColor).roundedImage()
+            annotationView.image = myAnnotation.image?.withBackground(color: UIColor(named: "pin")!).roundedImage()
            
         }
         return annotationView

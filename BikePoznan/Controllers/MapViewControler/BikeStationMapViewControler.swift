@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import RxSwift
 import RxCocoa
+import SwiftUI
 
 class BikeStationsMapieViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class BikeStationsMapieViewController: UIViewController {
     @IBOutlet weak var mapKit: MKMapView!
     @IBOutlet weak var segmentControler: UISegmentedControl!
     @IBOutlet weak var stackView_1: UIStackView!
+    @IBOutlet weak var stackView_2: UIStackView!
     
     let animation = Animations()
     var station: BikeStationDetailViewModel!
@@ -33,6 +35,7 @@ class BikeStationsMapieViewController: UIViewController {
         setUpPinLocation()
         bindLocation()
         getRoute()
+        setUpView()
         segmentControler.addTarget(self, action: #selector(switchType), for: .valueChanged)
         self.mapKit.delegate = self
         self.mapKit.showsUserLocation = true
@@ -45,7 +48,7 @@ class BikeStationsMapieViewController: UIViewController {
                 return
             }
             distanceLabel.text = station.newDistance(distance: self.station.getDistance())
-            animation.transitionFlipFromBottom(label: distanceLabel)
+            animation.transitionFlipFromBottom(label: distanceLabel, color: Colors().white)
             animation.changeLabelToRed(label: bikesLabel, numberOfBikes: station.stationData.properties.bikes)
         }).disposed(by: bag)
     }
@@ -61,10 +64,13 @@ class BikeStationsMapieViewController: UIViewController {
         labelLabel.text = station.stationData.properties.label
         bikesLabel.text = station.stationData.properties.bikes
         bikeRacksLabel.text = station.stationData.properties.free_racks
-        stackView_1.insertCustomizedViewIntoStack(background: Colors().red, cornerRadius: 60, shadowColor: UIColor.black.cgColor, shadowOpacity: 1, shadowRadius: 100)
-     
+  
     }
- 
+    func setUpView(){
+        view.setGradientBackground(colorOne: UIColor(named: "Background 1")!, colorTwo: UIColor(named: "Background 2")!)
+        stackView_1.customize(backgroundColor: UIColor(named: "WidgetColor")!, radiusSize: 40)
+        stackView_2.customize(backgroundColor: UIColor(named: "WidgetColor")!, radiusSize: 40)
+    }
     func getRoute(){
         
         LocalizationHelper.singleton.currentLocation.subscribe(onNext: { [self] (value) in

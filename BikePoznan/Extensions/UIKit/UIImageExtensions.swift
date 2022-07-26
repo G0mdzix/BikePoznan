@@ -14,7 +14,6 @@ extension UIImage {
         
     guard let ctx = UIGraphicsGetCurrentContext(), let image = cgImage else { return self }
     defer { UIGraphicsEndImageContext() }
-        
     let rect = CGRect(origin: .zero, size: size)
     ctx.setFillColor(color.cgColor)
     ctx.fill(rect)

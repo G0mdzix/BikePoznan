@@ -19,10 +19,7 @@ class SearchValidatior: XCTestCase {
     }
 
     func searchTest(){
-        
-        let test3 = Webservice()
-        let test = StationGeometry(coordinates: [0.0,0.0])
-        let test2 = StationDetails(label: "LasVegas", bikes: "100", free_racks: "-5")
-     
+    }
+    
 
 }
